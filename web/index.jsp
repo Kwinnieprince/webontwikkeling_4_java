@@ -45,7 +45,17 @@
 			</p>
 		</form>
 	</c:otherwise>
-</c:choose> </main>
+</c:choose>
+		<p>
+			status: <div id="status"> TODO </div>
+		</p>
+		<form method="post" action="Controller?action=ChangeStatus">
+			<p>
+				<label for="changestatus"> change status</label>
+				<input type="text" id="changestatus" name="status">
+			</p>
+		</form>
+	</main>
 
 	<jsp:include page="footer.jsp">
 		<jsp:param name="title" value="Home" />
