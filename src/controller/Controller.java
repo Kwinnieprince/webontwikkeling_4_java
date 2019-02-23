@@ -16,7 +16,9 @@ import domain.PersonService;
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
+	public static boolean sendJson = false;
+
 	private PersonService model = new PersonService();
 	private ControllerFactory controllerFactory = new ControllerFactory();
 
@@ -51,8 +53,24 @@ public class Controller extends HttpServlet {
         		destination="index.jsp";
         	}
         }
-        RequestDispatcher view = request.getRequestDispatcher(destination);
-        view.forward(request, response);
+        if (!sendJson){
+			RequestDispatcher view = request.getRequestDispatcher(destination);
+			view.forward(request, response);
+		}
+        if (sendJson){
+        	response.getWriter().write(destination);
+        	sendJson = false;
+		}
+
+	}
+
+
+	public static void setSendJson(){
+		sendJson = true;
+	}
+
+	public static void sendHtml(){
+		sendJson = false;
 	}
 
 }

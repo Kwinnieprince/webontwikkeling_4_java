@@ -17,6 +17,8 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private Role role;
+	private String status;
+	private List<Person>friends;
 
 	public Person(String userId, String password, String firstName,
 			String lastName,Role role) {
@@ -147,6 +149,28 @@ public class Person {
 			throw new IllegalArgumentException("No last name given");
 		}
 		this.lastName = lastName;
+	}
+
+	public void setStatus(String status){
+		if (status == null || status.isEmpty()){
+			throw new IllegalArgumentException("status cannot be empty");
+		}
+		this.status = status;
+	}
+
+	public String getStatus(){
+		return this.status;
+	}
+
+	public void AddFriend(String name, String status){
+		Person person = new Person();
+		person.setFirstName(name);
+		person.setStatus(status);
+		friends.add(person);
+	}
+
+	public List<Person> getFriends(){
+		return friends;
 	}
 
 }

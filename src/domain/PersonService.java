@@ -35,6 +35,15 @@ public class PersonService {
 		return getPersonRepository().getAuthenticatedUser(email, password);
 	}
 
+	public void changeStatus(String status, Person person){
+		person.setStatus(status);
+		getPersonRepository().update(person);
+	}
+
+	public String getStatus(Person person){
+		return getPersonRepository().get(person.getUserId()).getStatus();
+	}
+
 	private PersonRepository getPersonRepository() {
 		return personRepository;
 	}
