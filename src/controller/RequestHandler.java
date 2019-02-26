@@ -3,9 +3,13 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.PersonService;
 import domain.Person;
 import domain.Role;
+
+import java.util.List;
 
 public abstract class RequestHandler {
 	
@@ -27,6 +31,16 @@ public abstract class RequestHandler {
 			return true;
 		}
 		return false;
+	}
+
+	public String toJSON (List list) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			return mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			//ignore
+		}
+		return null;
 	}
 
 }

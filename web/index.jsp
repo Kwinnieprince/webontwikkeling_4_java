@@ -29,11 +29,7 @@
                 <input type="submit" id="logoutbutton" value="Log Out">
             </p>
         </form>
-
-        <p style="display: inline"> status: <div id="status"></div> </p>
-        <label for="state"> change status</label>
-        <input type="text" id="state"  name="status" onchange="changeStatus();">
-        <button id="changestatus" onclick="changeStatus();"> change status </button>
+        <jsp:include page="chats.jsp"/>
     </c:when>
     <c:otherwise>
         <form method="post" action="Controller?action=LogIn">
@@ -59,4 +55,5 @@
 </jsp:include>
 </body>
 <script src="js/chat.js"></script>
+<script src="js/friends.js"></script>
 </html>

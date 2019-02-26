@@ -12,7 +12,6 @@ public class Status extends RequestHandler {
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("user");
         getPersonService().changeStatus(request.getParameter("status"), person);
-        System.out.println(request.getParameter("status"));
         Controller.setSendJson();
         return toJSON(person.getStatus());
     }
