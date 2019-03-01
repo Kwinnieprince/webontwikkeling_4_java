@@ -1,4 +1,5 @@
 let xHRObjectFriends = new XMLHttpRequest();
+let xHRObjectAdd = new XMLHttpRequest();
 
 
 function getFriends() {
@@ -8,16 +9,24 @@ function getFriends() {
 }
 
 function showData() {
-    if (xHRObjectFriends.readyState === 200) {
-        if (xHRObjectFriends.status === 4) {
+    if (xHRObjectFriends.readyState === 4) {
+        if (xHRObjectFriends.status === 200) {
             let serverResponse = JSON.parse(xHRObjectFriends.responseText);
             let html = "";
             for (let i = 0; i < serverResponse.length; i++) {
-                html = html + "<li>" + serverResponse[i].name + ": " + serverResponse[i].status + "</li>"
+                html = html + "<li>" + serverResponse[i].userId + ": " + serverResponse[i].status + "</li>"
             }
-            console.log(html);
             document.getElementById("friends").innerHTML = html;
             setTimeout(getFriends, 2000);
         }
     }
+}
+
+function addFriends() {
+    let friend = document.getElementById("add").value;
+    let information = "friend=" + encodeURI(friend);
+    xHRObjectAdd.open("POST", "Controller?action=AddFriends");
+    xHRObjectAdd.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xHRObjectAdd.send(information);
+    xHRObjectAdd.onreadystatechange = showData;
 }

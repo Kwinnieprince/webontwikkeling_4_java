@@ -3,4 +3,5 @@
 <div style="display: flex;">
     <p> status: <div id="status" onload="getStatus();"></div></p>
 </div>
-<p>Change status: <input type="text" id="state"  name="status" onchange="changeStatus();"> <button id="changestatus" onclick="changeStatus();"> change status </button></p>
+<p style="display: flex">Change status: <input type="text" id="state"  name="status" onchange="changeStatus();"> <button id="changestatus" onclick="changeStatus();"> change status </button></p>
+<p style="display: flex">add friends: <input type="text" id="add" name="addfriend" onchange="addFriends();"> <button id="addfriend" onclick="addFriends()"> add friend </button></p>

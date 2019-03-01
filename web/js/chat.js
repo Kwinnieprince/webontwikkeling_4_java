@@ -20,18 +20,9 @@ function getStatus() {
     // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     // xhr.send();
     // xhr.onreadystatechange = getData;
-    xHRStatus.open("GET", "Controller?action=GetStatus");
-    xHRStatus.onreadystatechange = getDataStatus;
-    xHRStatus.send(null);
-}
-
-function getDataStatus() {
-    if (xHRStatus.readyState === 4){
-        if (xhr.status === 200){
-            document.getElementById("status").innerText = xHRStatus.responseText;
-        }
-    }
-
+    xhr.open("GET", "Controller?action=GetStatus");
+    xhr.onreadystatechange = getData;
+    xhr.send(null);
 }
 
 function getData() {

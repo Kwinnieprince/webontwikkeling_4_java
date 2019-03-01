@@ -17,26 +17,8 @@ public class GetFriends extends RequestHandler {
         String result = "";
         if (user != null){
             List<Person> friends = user.getFriends();
-            List<String> names = new ArrayList<>();
-            List<String> statusses = new ArrayList<>();
-            for (Person p : friends){
-                names.add(p.getUserId());
-                statusses.add(p.getStatus());
-            }
-            result = this.toJSON(names, statusses);
+            result = this.toJSON(friends);
         }
         return result;
-    }
-
-    public String toJSON (List names, List statusses) {
-        StringBuffer json = new StringBuffer();
-        for(int i = 0; i < names.size(); i++){
-            json.append("{ \"name\" : \"");
-            json.append(names.get(i));
-            json.append("\", \"status\" : \"");
-            json.append(statusses.get(i));
-            json.append("\"}");
-        }
-        return json.toString();
     }
 }

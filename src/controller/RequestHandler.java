@@ -33,12 +33,12 @@ public abstract class RequestHandler {
 		return false;
 	}
 
-	public String toJSON (List list) {
+	public String toJSON (Object object) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			return mapper.writeValueAsString(list);
+			return mapper.writeValueAsString(object);
 		} catch (JsonProcessingException e) {
-			//ignore
+			e.printStackTrace();
 		}
 		return null;
 	}
