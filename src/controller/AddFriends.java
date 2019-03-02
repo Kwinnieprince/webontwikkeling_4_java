@@ -9,11 +9,13 @@ public class AddFriends extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Controller.setSendJson();
+        Person person = (Person) request.getSession().getAttribute("user");
         String friend = request.getParameter("friend");
         Person newFriend = new Person();
         newFriend.setStatus("Not available");
         newFriend.setUserId(friend);
         getPersonService().addPerson(newFriend);
+        person.addFriend(newFriend);
         return this.toJSON(getPersonService().getPersons());
     }
 }
