@@ -19,6 +19,7 @@ public class GetFriends extends RequestHandler {
             List<Person> friends = user.getFriends();
             result = this.toJSON(friends);
         }
+        response.setContentType("application/json");
         return result;
     }
 }

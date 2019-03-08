@@ -16,6 +16,7 @@ public class AddFriends extends RequestHandler {
         newFriend.setUserId(friend);
         getPersonService().addPerson(newFriend);
         person.addFriend(newFriend);
+        response.setContentType("application/json");
         return this.toJSON(getPersonService().getPersons());
     }
 }

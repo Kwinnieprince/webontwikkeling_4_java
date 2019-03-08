@@ -25,6 +25,7 @@ function showData() {
 function addFriends() {
     let friend = document.getElementById("add").value;
     let information = "friend=" + encodeURI(friend);
+    document.getElementById("add").value = "";
     xHRObjectAdd.open("POST", "Controller?action=AddFriends");
     xHRObjectAdd.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xHRObjectAdd.send(information);

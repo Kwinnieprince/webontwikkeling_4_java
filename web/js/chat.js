@@ -9,6 +9,7 @@ window.onload = function(){
 function changeStatus() {
     let status = document.getElementById("state").value;
     let information = "status=" + encodeURI(status);
+    document.getElementById("state").value = "";
     xhr.open("POST", "Controller?action=Status", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send(information);

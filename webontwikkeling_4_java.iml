@@ -24,5 +24,6 @@
     <orderEntry type="library" name="jackson-core-2.7.4" level="project" />
     <orderEntry type="library" name="jackson-databind-2.7.4" level="project" />
     <orderEntry type="library" name="jstl-1.2" level="project" />
+    <orderEntry type="library" name="javax.websocket-api-1.0-rc4" level="project" />
   </component>
 </module>

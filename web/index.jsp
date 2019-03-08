@@ -45,6 +45,7 @@
                 <input type="submit" id="loginbutton" value="Log in">
             </p>
         </form>
+        <jsp:include page="feedbacks.jsp"/>
     </c:otherwise>
 </c:choose>
 
@@ -56,4 +57,5 @@
 </body>
 <script src="js/chat.js"></script>
 <script src="js/friends.js"></script>
+<script src="js/websockets.js"></script>
 </html>
