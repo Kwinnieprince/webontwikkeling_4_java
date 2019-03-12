@@ -16,13 +16,12 @@ function open() {
 }
 
 function send(id) {
-    let feedback =  {};
-    feedback.topicId = id;
-    feedback.comment = document.getElementById("feedback" + id + "text").value;
-    feedback.name = document.getElementById("name" + id).value;
-    feedback.rating = document.getElementById("feedback" + id + "nr").value;
-    console.log(feedback);
-    ws.send(JSON.stringify(feedback));
+    let feedbacks =  {};
+    feedbacks.topicId = id;
+    feedbacks.name = document.getElementById("name" + id).value;
+    feedbacks.feedback = document.getElementById("feedback" + id + "text").value;
+    feedbacks.rating = document.getElementById("feedback" + id + "nr").value;
+    ws.send(JSON.stringify(feedbacks));
 }
 
 function close() {
@@ -33,10 +32,7 @@ function writeResponse(text) {
     let result = JSON.parse(text);
     for (let i = 0; i < result.length; i++) {
         let commentsUL = document.getElementById("feedback" + result[i].topicId);
-        let commentLI = document.createElement('li');
-        let commentTxt = document.createTextNode(result[i].name + " (" + result[i].rating + "/10) : " + result[i].comment);
-        commentLI.appendChild(commentTxt);
-        commentsUL.appendChild(commentLI);
+        commentsUL.innerHTML += "<li>" + result[i].name + " (" + result[i].rating + "/10) : " + result[i].feedback + "</li>"
     }
 }
 

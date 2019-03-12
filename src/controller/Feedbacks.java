@@ -26,6 +26,7 @@ public class Feedbacks {
         ObjectMapper mapper = new ObjectMapper();
         Feedback feedbackObject = mapper.readValue(feedback, Feedback.class);
         sendCommentToAll(feedbackObject);
+        System.out.println(mapper.toString() + " ah " + feedbackObject.getFeedback());
         feedbacks.add(feedbackObject);
     }
 

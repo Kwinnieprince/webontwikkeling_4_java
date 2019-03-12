@@ -10,7 +10,7 @@ public class Feedback {
     private String name;
 
     @JsonCreator
-    public Feedback(@JsonProperty("topicId") int topicId, @JsonProperty("comment") String feedback, @JsonProperty("rating") int rating, @JsonProperty("name") String name){
+    public Feedback(@JsonProperty("topicId") int topicId, @JsonProperty("feedback") String feedback, @JsonProperty("rating") int rating, @JsonProperty("name") String name){
         setRating(rating);
         setFeedback(feedback);
         setName(name);
@@ -26,16 +26,16 @@ public class Feedback {
     }
 
     private void setFeedback(String feedback) {
-        if (this.feedback != null || feedback.trim().isEmpty()){
-            throw new IllegalArgumentException("not valid");
-        }
+//        if (feedback != null){
+//            throw new IllegalArgumentException("not valid");
+//        }
         this.feedback = feedback;
     }
 
     private void setName(String name) {
-        if (name != null || name.trim().isEmpty()){
-            throw new IllegalArgumentException("not valid");
-        }
+//        if (name != null){
+//            throw new IllegalArgumentException("not valid");
+//        }
         this.name = name;
     }
 
