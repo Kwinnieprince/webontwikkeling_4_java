@@ -42,34 +42,30 @@
     <button onclick="send(3)">send</button>
 </div>
 <div>
-    <form action="">
-        <h3>Wanneer is het vakantie?</h3>
-        <ul id="feedback4"></ul>
-        <label for="name4">naam <input type="text" id="name4"></label>
-        <label for="feedback4text">feedback <input type="text" id="feedback4text"></label>
-        <label for="feedback4nr">punten
-            <select name="feedback4nr" id="feedback4nr">
-                <c:forEach begin="1" end="10" var="nr">
-                    <option value="${nr}">${nr}</option>
-                </c:forEach>
-            </select>
-        </label>
-        <button onclick="send(4)">send</button>
-    </form>
+    <h3>Wanneer is het vakantie?</h3>
+    <ul id="feedback4"></ul>
+    <label for="name4">naam <input type="text" id="name4"></label>
+    <label for="feedback4text">feedback <input type="text" id="feedback4text"></label>
+    <label for="feedback4nr">punten
+        <select name="feedback4nr" id="feedback4nr">
+            <c:forEach begin="1" end="10" var="nr">
+                <option value="${nr}">${nr}</option>
+            </c:forEach>
+        </select>
+    </label>
+    <button onclick="send(4)">send</button>
 </div>
 <div>
-    <form action="">
-        <h3>Wat vind je van de ucll?</h3>
-        <ul id="feedback5"></ul>
-        <label for="name5">naam <input type="text" id="name5"></label>
-        <label for="feedback5text">feedback <input type="text" id="feedback5text"></label>
-        <label for="feedback5nr">punten
-            <select name="feedback5nr" id="feedback5nr">
-                <c:forEach begin="1" end="10" var="nr">
-                    <option value="${nr}">${nr}</option>
-                </c:forEach>
-            </select>
-        </label>
-        <button onclick="send(5)">send</button>
-    </form>
+    <h3>Wat vind je van de ucll?</h3>
+    <ul id="feedback5"></ul>
+    <label for="name5">naam <input type="text" id="name5"></label>
+    <label for="feedback5text">feedback <input type="text" id="feedback5text"></label>
+    <label for="feedback5nr">punten
+        <select name="feedback5nr" id="feedback5nr">
+            <c:forEach begin="1" end="10" var="nr">
+                <option value="${nr}">${nr}</option>
+            </c:forEach>
+        </select>
+    </label>
+    <button onclick="send(5)">send</button>
 </div>
