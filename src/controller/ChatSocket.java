@@ -1,7 +1,6 @@
 package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import domain.Feedback;
 import domain.Message;
 
 import javax.websocket.*;
@@ -9,8 +8,8 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.*;
 
-@ServerEndpoint(value = "/chatSocket")
-public class chatSocket {
+@ServerEndpoint(value = "/ChatSocket")
+public class ChatSocket {
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
     private static final List<Message> messages = new ArrayList<>();
 

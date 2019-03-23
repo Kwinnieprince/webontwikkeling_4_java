@@ -71,6 +71,16 @@ public class Person {
 		return userId;
 	}
 
+	public String getUserIdEscaped(){
+		String userId = this.userId;
+		String[] user;
+		user = userId.split("@");
+		String user1 = user[1];
+		String[] user2 = user1.split("\\.");
+		userId=user[0] + "\\@" + user2[0] + "\\." + user2[1];
+		return userId;
+	}
+
 	public String getPassword() {
 		return password;
 	}

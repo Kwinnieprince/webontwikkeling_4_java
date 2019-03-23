@@ -37,7 +37,7 @@ function writeResponse(text) {
     }
 }
 function openChat() {
-    chatsocket = new WebSocket("ws://localhost:8080/web_war_exploded/chatSocket");
+    chatsocket = new WebSocket("ws://localhost:8080/web_war_exploded/ChatSocket");
 
     ws.onopen = function (event) {
 
@@ -53,9 +53,10 @@ function openChat() {
 }
 
 function sendMessage(userId) {
-    let sender = $("#hiddenName").val();
+    console.log(userId);
+    let sender = $('#hiddenName').val();
     let receiver = userId;
-    let message = $("#msg").val();
+    let message = $('#msg').val();
     let messages = {};
     messages.sender = sender;
     messages.receiver = receiver;
@@ -71,7 +72,8 @@ function writeChat(message) {
         let sender = result[i].sender;
         let receiver = result[i].receiver;
         let inside;
-        if (sender == $("#hiddenName").val()){
+        // noinspection EqualityComparisonWithCoercionJS
+        if (sender == $('#hiddenName').val()){
             inside = "<div style='text-align: right'>" + message + "</div>";
         }else {
             inside = "<div style='text-align: left'>" + message + "</div>";

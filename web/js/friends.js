@@ -45,10 +45,10 @@ function startChat(userId) {
                 let user = userIds[i].userId.toString();
                 user = user.split("@");
                 html = "<div> Message " + user[0] + "</div>";
-                htmlSendButton = "<button type=\"submit\" class=\"btn\" onclick=\"sendMessage("+userId+")\">Send</button>";
                 let user1 = user[1].split(".");
                 user = user[0] + "\\@" + user1[0] + "\\." + user1[1];
                 console.log(user);
+                htmlSendButton = "<button type=\"submit\" class=\"btn\" onclick=\"sendMessage(\""+user+"\")\">Send</button>";
                 $li = $("#dialog" + user.toString());
                 break;
             }
