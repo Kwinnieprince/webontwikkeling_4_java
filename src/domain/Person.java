@@ -20,6 +20,7 @@ public class Person {
 	private Role role;
 	private String status;
 	private List<Person>friends = new ArrayList<>();
+	private List<Message> messages = new ArrayList<>();
 
 	public Person(String userId, String password, String firstName,
 			String lastName,Role role) {
@@ -171,6 +172,15 @@ public class Person {
 
 	public List<Person> getFriends(){
 		return friends;
+	}
+
+	public List<Message> getMessages(){
+		return messages;
+	}
+
+	public void sendMessage(Person sender, Person receiver, String message){
+		Message messagesent = new Message(sender, receiver, message);
+		messages.add(messagesent);
 	}
 
 }

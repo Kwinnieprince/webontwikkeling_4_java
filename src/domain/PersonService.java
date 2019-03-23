@@ -47,4 +47,14 @@ public class PersonService {
 	private PersonRepository getPersonRepository() {
 		return personRepository;
 	}
+
+	public List<Message> getMessagesOfPerson(Person person){
+		return personRepository.get(person.getUserId()).getMessages();
+	}
+
+
+	public void sendMessage(Person sender, Message message){
+		personRepository.get(sender.getUserId()).sendMessage(message.getSender(), message.getReceiver(), message.getMessage());
+	}
+
 }

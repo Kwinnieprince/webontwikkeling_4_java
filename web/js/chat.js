@@ -1,6 +1,5 @@
 let xhr = new XMLHttpRequest();
 let xHRStatus = new XMLHttpRequest();
-let chatsocket = new WebSocket('ws://localhost:8080/chatsocket');
 
 window.onload = function(){
     getStatus();
@@ -51,19 +50,4 @@ function getData() {
 
 function closeChat() {
     document.getElementById("chatForm").style.display = "none";
-}
-
-//websockets to chat
-chatsocket.onopen = function(event) {
-};
-
-chatsocket.onmessage = function(event) {
-    onMessage(event.data)
-};
-
-chatsocket.onclose = function (event) {
-};
-
-function onMessage(event){
-
 }
