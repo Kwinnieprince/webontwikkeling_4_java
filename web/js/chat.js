@@ -47,3 +47,7 @@ function getData() {
         }
     }
 }
+
+function closeChat() {
+    $("#chatForm").style.display = "none";
+}

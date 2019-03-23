@@ -16,7 +16,7 @@ function showData() {
             userIds = serverResponse;
             let html = "";
             for (let i = 0; i < serverResponse.length; i++) {
-                html = html + "<li id='dialog" + serverResponse[i].userId + "' onclick='startChat("+serverResponse[i].userId.toString()+")'>" + serverResponse[i].userId + ": " + serverResponse[i].status + "</li>"
+                html = html + "<li id='dialog" + serverResponse[i].userId + "' onclick='startChat(\""+serverResponse[i].userId+"\")'>" + serverResponse[i].userId + ": " + serverResponse[i].status + "</li>"
             }
             document.getElementById("friends").innerHTML = html;
             //setTimeout(getFriends, 2000);
@@ -40,14 +40,15 @@ function startChat(userId) {
         for (let i = 0 ; i < userIds.length ; i++){
             // noinspection EqualityComparisonWithCoercionJS
             if (userIds[i].userId == userId){
-                $li = $("#dialog" +userIds[i].userId);//$("dialog" +userIds[i].userId);
+                let user = userIds[i].userId.toString();
+                user = user.split("@");
+                let user1 = user[1].split(".");
+                user = user[0] + "\\@" + user1[0] + "\\." + user1[1];
+                console.log(user);
+                $li = $("#dialog" + user.toString());
                 break;
             }
         }
-        console.log("test");
-        $li.on('click',function () {
-            console.log("testie");
-            $li.fadeOut(1000);
-        })
+        $("#chatForm").style.display = "block";
     })
 }
