@@ -35,17 +35,19 @@ function addFriends() {
 }
 
 function startChat(userId) {
-    let $li;
-    for (let i = 0 ; i < userIds.length ; i++){
-        if (userIds[i].userId == userId){
-            $li = document.getElementById("dialog" +userIds[i].userId);//$("dialog" +userIds[i].userId);
-            break;
+    $(document).ready(function () {
+        let $li;
+        for (let i = 0 ; i < userIds.length ; i++){
+            // noinspection EqualityComparisonWithCoercionJS
+            if (userIds[i].userId == userId){
+                $li = $("#dialog" +userIds[i].userId);//$("dialog" +userIds[i].userId);
+                break;
+            }
         }
-    }
-    console.log($li);
-    $li.on('click',function () {
         console.log("test");
-        $(this).fadeOut(1000);
+        $li.on('click',function () {
+            console.log("testie");
+            $li.fadeOut(1000);
+        })
     })
-
 }
