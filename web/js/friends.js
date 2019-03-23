@@ -1,5 +1,6 @@
 let xHRObjectFriends = new XMLHttpRequest();
 let xHRObjectAdd = new XMLHttpRequest();
+let userIds;
 
 
 function getFriends() {
@@ -12,12 +13,13 @@ function showData() {
     if (xHRObjectFriends.readyState === 4) {
         if (xHRObjectFriends.status === 200) {
             let serverResponse = JSON.parse(xHRObjectFriends.responseText);
+            userIds = serverResponse;
             let html = "";
             for (let i = 0; i < serverResponse.length; i++) {
-                html = html + "<li>" + serverResponse[i].userId + ": " + serverResponse[i].status + "</li>"
+                html = html + "<li id='dialog" + serverResponse[i].userId + "' onclick='startChat("+serverResponse[i].userId.toString()+")'>" + serverResponse[i].userId + ": " + serverResponse[i].status + "</li>"
             }
             document.getElementById("friends").innerHTML = html;
-            setTimeout(getFriends, 2000);
+            //setTimeout(getFriends, 2000);
         }
     }
 }
@@ -30,4 +32,20 @@ function addFriends() {
     xHRObjectAdd.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xHRObjectAdd.send(information);
     xHRObjectAdd.onreadystatechange = showData;
+}
+
+function startChat(userId) {
+    let $li;
+    for (let i = 0 ; i < userIds.length ; i++){
+        if (userIds[i].userId == userId){
+            $li = document.getElementById("dialog" +userIds[i].userId);//$("dialog" +userIds[i].userId);
+            break;
+        }
+    }
+    console.log($li);
+    $li.on('click',function () {
+        console.log("test");
+        $(this).fadeOut(1000);
+    })
+
 }
