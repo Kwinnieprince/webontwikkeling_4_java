@@ -49,5 +49,5 @@ function getData() {
 }
 
 function closeChat() {
-    $("#chatForm").style.display = "none";
+    document.getElementById("chatForm").style.display = "none";
 }
