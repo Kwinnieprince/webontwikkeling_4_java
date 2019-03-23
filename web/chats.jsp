@@ -1,18 +1,21 @@
-<ul id="friends"></ul>
+<ul id="friends" style='margin-left: -40px'></ul>
 
 <div style="display: flex;">
-    <p> status: <div id="status" onload="getStatus();"></div></p>
+    <p>status:
+        <div id="status" onload="getStatus();"></div>
+    </p>
 </div>
-<p style="display: flex">Change status: <input type="text" id="state"  name="status"> <button id="changestatus" onclick="changeStatus();"> change status </button></p>
-<p style="display: flex">add friends: <input type="text" id="add" name="addfriend"> <button id="addfriend" onclick="addFriends()"> add friend </button></p>
+<p style="display: block">Change status: <input type="text" id="state"  name="status"> <button id="changestatus" onclick="changeStatus();"> change status </button></p>
+<p style="display: block">add friends: <input type="text" id="add" name="addfriend"> <button id="addfriend" onclick="addFriends()"> add friend </button></p>
 <div class="chat-popup" id="chatForm" style="display:none;">
-    <form action="#" class="form-container"> <!-- TODO -->
+    <div class="form-container"> <!-- TODO -->
         <h1>Chat</h1>
 
-        <label for="msg"><b>Message</b></label>
+        <label for="msg"><b id="messagePerson"></b></label>
+        <div id="messages" style="min-height: 200px; background-color: #f1f1f1"></div>
         <textarea placeholder="Type message.." name="msg" id="msg" required></textarea>
 
-        <button type="submit" class="btn">Send</button>
+        <div id="sendButton"></div>
         <button type="button" class="btn cancel" onclick="closeChat()">Close</button>
-    </form>
+    </div>
 </div>

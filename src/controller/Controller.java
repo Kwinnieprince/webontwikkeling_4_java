@@ -17,7 +17,7 @@ import domain.PersonService;
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public static boolean sendJson = false;
+	private static boolean sendJson = false;
 
 	private PersonService model = new PersonService();
 	private ControllerFactory controllerFactory = new ControllerFactory();
@@ -53,7 +53,7 @@ public class Controller extends HttpServlet {
         		destination="index.jsp";
         	}
         }
-        if (!sendJson){
+        if (!sendJson ){
 			RequestDispatcher view = request.getRequestDispatcher(destination);
 			view.forward(request, response);
 		}

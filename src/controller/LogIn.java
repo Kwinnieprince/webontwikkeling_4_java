@@ -42,7 +42,7 @@ public class LogIn extends RequestHandler {
 			request.setAttribute("errors", errors);
 		}
 		Controller.sendHtml();
-		return destination;	
+		return destination;
 	}
 	
 	private void createSession(Person person, HttpServletRequest request,

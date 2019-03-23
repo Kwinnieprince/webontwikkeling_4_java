@@ -16,7 +16,7 @@ function showData() {
             userIds = serverResponse;
             let html = "";
             for (let i = 0; i < serverResponse.length; i++) {
-                html = html + "<li class='mouse' id='dialog" + serverResponse[i].userId + "' onclick='startChat(\""+serverResponse[i].userId+"\")'>" + serverResponse[i].userId + ": " + serverResponse[i].status + "</li>"
+                html = html + "<li style='padding-bottom: 10px' class='mouse' id='dialog" + serverResponse[i].userId + "' onclick='startChat(\""+serverResponse[i].userId+"\")'>" + serverResponse[i].userId + ": <b>" + serverResponse[i].status + "</b></li>"
             }
             document.getElementById("friends").innerHTML = html;
             setTimeout(getFriends, 2000);
@@ -37,11 +37,15 @@ function addFriends() {
 function startChat(userId) {
     $(document).ready(function () {
         let $li;
+        let html;
+        let htmlSendButton;
         for (let i = 0 ; i < userIds.length ; i++){
             // noinspection EqualityComparisonWithCoercionJS
             if (userIds[i].userId == userId){
                 let user = userIds[i].userId.toString();
                 user = user.split("@");
+                html = "<div> Message " + user[0] + "</div>";
+                htmlSendButton = "<button type=\"submit\" class=\"btn\" onclick=\"sendMessage("+userId+")\">Send</button>";
                 let user1 = user[1].split(".");
                 user = user[0] + "\\@" + user1[0] + "\\." + user1[1];
                 console.log(user);
@@ -49,7 +53,8 @@ function startChat(userId) {
                 break;
             }
         }
-        // $("#chatForm").style.display = "block";
+        document.getElementById("messagePerson").innerHTML = html;
+        document.getElementById("sendButton").innerHTML = htmlSendButton;
         document.getElementById("chatForm").style.display = "block";
     })
 }
