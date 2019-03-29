@@ -14,7 +14,9 @@
         <label for="msg"><b id="messagePerson"></b></label>
         <div id="messages" style="min-height: 200px; background-color: #f1f1f1"></div>
         <textarea placeholder="Type message.." name="msg" id="msg" required></textarea>
-        <input id="hiddenName" type="hidden" value="${user.getUserIdEscaped()}">
+        <input id="userIdHidden" type="hidden" value="${user.getUserIdEscaped()}">
+        <input type="hidden" id="userId" value="${user.getUserId()}">
+        <div id="receivingUser"></div>
         <div id="sendButton"></div>
         <button type="button" class="btn cancel" onclick="closeChat()">Close</button>
     </div>

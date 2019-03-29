@@ -1,14 +1,19 @@
 package domain;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public class Message {
     private Person sender;
     private Person receiver;
     private String message;
+    private Date now;
 
     public Message(Person sender, Person receiver, String message){
         setSender(sender);
         setReceiver(receiver);
         setMessage(message);
+        now = new Date();
     }
 
     public Message(){}

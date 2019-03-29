@@ -4,6 +4,7 @@ let xHRStatus = new XMLHttpRequest();
 window.onload = function(){
     getStatus();
     getFriends();
+    getNewMessage();
 };
 
 function changeStatus() {
@@ -51,3 +52,49 @@ function getData() {
 function closeChat() {
     document.getElementById("chatForm").style.display = "none";
 }
+
+function getNewMessage() {
+    const userId = $('#userId').val();
+    $.ajax({
+        type: "GET",
+        url: "Controller?action=GetMessage&userId=" + userId,
+        dataType: "json",
+        success: function (json){
+            //$('#messages').html(json.text);
+            //if (userId)
+            if (json.message != null){
+                if (json.sender == userId){
+                    $('#messages').html("<li style='text-align:right; list-style: none'>" + json.message + " </li>");
+                } else {
+                    $('#messages').html("<li style='text-align:left; list-style: none'>" + json.message + " </li>");
+                }
+
+            }
+            setTimeout(getNewMessage, 10000);
+        },
+        error: function () {
+            setTimeout(getNewMessage, 10000);
+        }
+    })
+}
+
+// function unslash(slashedString) {
+//     let slashedstring = slashedString.split("\\");
+//     let person = concat(slashedstring);
+//     console.log(person);
+//     return person;
+// }
+
+function sendMessage() {
+    const userId = $('#userIdHidden').val();
+    const message = $('#msg').val();
+    const receiver = $('#sender').val();
+    $.post("Controller", {action: "SendMessage", message: message, sender: userId,  receiver: receiver})
+    $('#msg').val("");
+}
+
+document.getElementById("sendButton").addEventListener("click", function () {
+    sendMessage();
+});
+
+

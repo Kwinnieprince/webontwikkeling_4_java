@@ -22,6 +22,7 @@ function showData() {
             setTimeout(getFriends, 2000);
         }
     }
+    setTimeout(getFriends, 2000);
 }
 
 function addFriends() {
@@ -39,6 +40,7 @@ function startChat(userId) {
         let $li;
         let html;
         let htmlSendButton;
+        let userform;
         for (let i = 0 ; i < userIds.length ; i++){
             // noinspection EqualityComparisonWithCoercionJS
             if (userIds[i].userId == userId){
@@ -48,13 +50,15 @@ function startChat(userId) {
                 let user1 = user[1].split(".");
                 user = user[0] + "\\@" + user1[0] + "\\." + user1[1];
                 console.log(user);
-                htmlSendButton = "<button type=\"submit\" class=\"btn\" onclick=\"sendMessage(\""+user+"\")\">Send</button>";
+                htmlSendButton = "<button type=\"submit\" class=\"btn\">Send</button>";
                 $li = $("#dialog" + user.toString());
+                userform = "<input type='hidden' value='" + user + "' id='sender'>";
                 break;
             }
         }
         document.getElementById("messagePerson").innerHTML = html;
         document.getElementById("sendButton").innerHTML = htmlSendButton;
         document.getElementById("chatForm").style.display = "block";
+        document.getElementById("receivingUser").innerHTML = userform;
     })
 }

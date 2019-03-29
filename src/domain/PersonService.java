@@ -1,5 +1,6 @@
 package domain;
 
+import java.security.PublicKey;
 import java.util.List;
 
 import db.PersonRepository;
@@ -14,6 +15,15 @@ public class PersonService {
 	public Person getPerson(String personId)  {
 		return getPersonRepository().get(personId);
 	}
+
+	public Person getPersonWithSlashes(String personId){
+	    String[] personArr = personId.split("\\\\");
+	    String person = "";
+	    for (int i = 0; i < personArr.length; i++){
+	        person += personArr[i];
+        }
+	    return getPerson(person);
+    }
 
 	public List<Person> getPersons() {
 		return getPersonRepository().getAll();
@@ -51,6 +61,15 @@ public class PersonService {
 	public List<Message> getMessagesOfPerson(Person person){
 		return personRepository.get(person.getUserId()).getMessages();
 	}
+
+	public Message getLastMessageFromPerson(Person person){
+	    List<Message> messages =  personRepository.get(person.getUserId()).getMessages();
+	    Message message = new Message();
+	    if(messages != null && !messages.isEmpty()){
+			message =  messages.get(messages.size() - 1);
+		}
+	    return message;
+    }
 
 
 	public void sendMessage(Person sender, Message message){
