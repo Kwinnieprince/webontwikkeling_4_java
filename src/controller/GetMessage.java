@@ -1,9 +1,11 @@
 package controller;
 
+import domain.Message;
 import domain.Person;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public class GetMessage extends RequestHandler {
     @Override
@@ -11,6 +13,16 @@ public class GetMessage extends RequestHandler {
         Controller.setSendJson();
         String userId = request.getParameter("userId");
         Person person = getPersonService().getPerson(userId);
-        return this.toJSON(getPersonService().getLastMessageFromPerson(person));
+        return toJSON(person);
+    }
+
+    public String toJSON (Person person) {
+        Message message = getPersonService().getLastMessageFromPerson(person);
+        String json = "";
+            json = "{\"sender\":\"" + message.getSender().getUserId() + "\"," +
+                    "\"receiver\":\"" + message.getReceiver().getUserId() + "\"," +
+                    "\"message\":\"" + message.getMessage() + "\"," +
+                    "\"id\":\"" + message.getMessageId() + "\"}";
+        return json;
     }
 }

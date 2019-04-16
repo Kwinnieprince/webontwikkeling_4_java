@@ -8,12 +8,26 @@ public class Message {
     private Person receiver;
     private String message;
     private Date now;
+    private int id;
+
+    public Message(Person sender, Person receiver, String message, int id){
+        setSender(sender);
+        setReceiver(receiver);
+        setMessage(message);
+        setMessageId(id);
+        now = new Date();
+    }
 
     public Message(Person sender, Person receiver, String message){
         setSender(sender);
         setReceiver(receiver);
         setMessage(message);
         now = new Date();
+    }
+
+    public void setMessageId(int id) {
+        System.out.println(id);
+        this.id = id;
     }
 
     public Message(){}
@@ -52,6 +66,10 @@ public class Message {
 
     public String getMessage() {
         return message;
+    }
+
+    public int getMessageId() {
+        return id;
     }
 }
 

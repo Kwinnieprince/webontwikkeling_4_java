@@ -170,7 +170,7 @@ nav ul li#current {
 	outline: none;
 }
 
-.form-container .btn {
+.form-container .btn #sendButton {
 	background-color: #4CAF50;
 	color: white;
 	border: none;

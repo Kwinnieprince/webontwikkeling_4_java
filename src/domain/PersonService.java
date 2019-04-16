@@ -1,6 +1,7 @@
 package domain;
 
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.PersonRepository;
@@ -8,6 +9,7 @@ import db.PersonRepositoryStub;
 
 public class PersonService {
 	private PersonRepository personRepository = new PersonRepositoryStub();
+	List<Integer>messageIds = new ArrayList<>();
 
 	public PersonService(){
 	}

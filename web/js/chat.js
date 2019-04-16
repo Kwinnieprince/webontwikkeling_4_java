@@ -1,10 +1,11 @@
 let xhr = new XMLHttpRequest();
 let xHRStatus = new XMLHttpRequest();
+let messageId = 0;
 
 window.onload = function(){
     getStatus();
     getFriends();
-    getNewMessage();
+    //getNewMessage(); TODO
 };
 
 function changeStatus() {
@@ -50,32 +51,40 @@ function getData() {
 }
 
 function closeChat() {
-    document.getElementById("chatForm").style.display = "none";
+    let t = document.getElementById("chatformtodel");
+    t.parentNode.removeChild(t);
+    document.getElementById("chatForm").style.display(none);
 }
 
 function getNewMessage() {
     const userId = $('#userId').val();
-    $.ajax({
-        type: "GET",
-        url: "Controller?action=GetMessage&userId=" + userId,
-        dataType: "json",
-        success: function (json){
-            //$('#messages').html(json.text);
-            //if (userId)
-            if (json.message != null){
-                if (json.sender == userId){
-                    $('#messages').html("<li style='text-align:right; list-style: none'>" + json.message + " </li>");
-                } else {
-                    $('#messages').html("<li style='text-align:left; list-style: none'>" + json.message + " </li>");
+    const messagebox = $('#msg').val();
+    if (userId != null || userId != undefined){
+        $.ajax({
+            type: "GET",
+            url: "Controller?action=GetMessage&userId=" + userId,
+            dataType: "json",
+            success: function (json){
+                //$('#messages').html(json.text);
+                //if (userId)
+                if (json.message != null){
+                    $('#messagesUl').val("");
+                    for(message in json){
+                        messageId = json.id;
+                        if (json.sender == userId){
+                            $('#messagesUl').append("<li style='text-align:right; list-style: none'>" + json.message + " </li>");
+                        } else {
+                            $('#messagesUl').append("<li style='text-align:left; list-style: none'>" + json.message + " </li>");
+                        }
+                    }
                 }
-
+                setTimeout(getNewMessage, 10000);
+            },
+            error: function () {
+                setTimeout(getNewMessage, 10000);
             }
-            setTimeout(getNewMessage, 10000);
-        },
-        error: function () {
-            setTimeout(getNewMessage, 10000);
-        }
-    })
+        })
+    }
 }
 
 // function unslash(slashedString) {
@@ -89,12 +98,10 @@ function sendMessage() {
     const userId = $('#userIdHidden').val();
     const message = $('#msg').val();
     const receiver = $('#sender').val();
-    $.post("Controller", {action: "SendMessage", message: message, sender: userId,  receiver: receiver})
+    $.post("Controller", {action: "SendMessage", message: message, sender: userId,  receiver: receiver});
     $('#msg').val("");
 }
 
 document.getElementById("sendButton").addEventListener("click", function () {
     sendMessage();
 });
-
-
