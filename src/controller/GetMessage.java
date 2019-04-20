@@ -21,8 +21,7 @@ public class GetMessage extends RequestHandler {
         String json = "";
             json = "{\"sender\":\"" + message.getSender().getUserId() + "\"," +
                     "\"receiver\":\"" + message.getReceiver().getUserId() + "\"," +
-                    "\"message\":\"" + message.getMessage() + "\"," +
-                    "\"id\":\"" + message.getMessageId() + "\"}";
+                    "\"message\":\"" + message.getMessage() + "\"}";
         return json;
     }
 }

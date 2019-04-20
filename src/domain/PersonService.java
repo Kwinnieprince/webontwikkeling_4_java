@@ -60,17 +60,11 @@ public class PersonService {
 		return personRepository;
 	}
 
-	public List<Message> getMessagesOfPerson(Person person){
-		return personRepository.get(person.getUserId()).getMessages();
-	}
-
 	public Message getLastMessageFromPerson(Person person){
-	    List<Message> messages =  personRepository.get(person.getUserId()).getMessages();
-	    Message message = new Message();
-	    if(messages != null && !messages.isEmpty()){
-			message =  messages.get(messages.size() - 1);
+		if (personRepository.get(person.getUserId()).getLastMessage() != null){
+			return  personRepository.get(person.getUserId()).getLastMessage();
 		}
-	    return message;
+		return new Message();
     }
 
 

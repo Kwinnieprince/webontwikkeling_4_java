@@ -185,12 +185,19 @@ public class Person {
 	}
 
 	public List<Message> getMessages(){
-		return messages;
+		return this.messages;
+	}
+
+	public Message getLastMessage(){
+		if (messages !=  null && !messages.isEmpty()){
+			return this.messages.get(this.messages.size() - 1);
+		}
+		return null;
 	}
 
 	public void sendMessage(Person sender, Person receiver, String message){
-		Message messagesent = new Message(sender, receiver, message);
-		messages.add(messagesent);
+		Message messageSent = new Message(sender, receiver, message);
+		messages.add(messageSent);
 	}
 
 }

@@ -26,16 +26,10 @@ public class Feedback {
     }
 
     private void setFeedback(String feedback) {
-//        if (feedback != null){
-//            throw new IllegalArgumentException("not valid");
-//        }
         this.feedback = feedback;
     }
 
     private void setName(String name) {
-//        if (name != null){
-//            throw new IllegalArgumentException("not valid");
-//        }
         this.name = name;
     }
 
