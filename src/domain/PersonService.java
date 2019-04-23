@@ -24,7 +24,6 @@ public class PersonService {
 	    for (int i = 0; i < personArr.length; i++){
 	        person += personArr[i];
         }
-		System.out.println(getPerson(person).getUserId());
 	    return getPerson(person);
     }
 

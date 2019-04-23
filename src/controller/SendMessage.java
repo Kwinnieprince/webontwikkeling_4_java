@@ -10,11 +10,6 @@ public class SendMessage extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         String senderId = request.getParameter("sender");
-//        String[] s = senderId.split("\\\\");
-//        String str = "";
-//        for (int i = 0; i < s.length; i++){
-//            str += s[i];
-//        }
         String receiverId = request.getParameter("receiver");
         String messageString = request.getParameter("message");
         Message message = new Message();

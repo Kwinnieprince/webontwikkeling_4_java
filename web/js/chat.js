@@ -58,29 +58,28 @@ function closeChat() {
 
 function getNewMessage() {
     const userId = $('#userId').val();
-    const messagebox = $('#msg').val();
     if (userId != null || userId != undefined){
         $.ajax({
             type: "GET",
             url: "Controller?action=GetMessage&userId=" + userId,
             dataType: "json",
             success: function (json){
-                //$('#messages').html(json.text);
-                //if (userId)
                 if (json.message != null){
-                    $('#messagesUl').val("");
-                    for(message in json){
-                        messageId = json.id;
-                        if (json.sender == userId){
-                            $('#messagesUl').append("<li style='text-align:right; list-style: none'>" + json.message + " </li>");
-                        } else {
-                            $('#messagesUl').append("<li style='text-align:left; list-style: none'>" + json.message + " </li>");
-                        }
-                    }
+                    //$('#messagesUl').each(function(i, element){
+                        console.log(element + "  :this");
+                        //if($(element).val() !== "<li style='text-align:right; list-style: none'>\" + json.message + \" </li>"){
+                            //if (json.sender == userId){
+                                $('#messagesUl').append("<li style='text-align:right; list-style: none'>" + json.message + " </li>");
+                            // } else {
+                            //     $('#messagesUl').append("<li style='text-align:left; list-style: none'>" + json.message + " </li>")
+                            // }
+                        //}
+                    //});
                 }
                 setTimeout(getNewMessage, 10000);
             },
             error: function () {
+                console.log("error getting the message");
                 setTimeout(getNewMessage, 10000);
             }
         })
@@ -95,10 +94,10 @@ function getNewMessage() {
 // }
 
 function sendMessage() {
-    const userId = $('#userIdHidden').val();
     const message = $('#msg').val();
-    const receiver = $('#sender').val();
-    $.post("Controller", {action: "SendMessage", message: message, sender: userId,  receiver: receiver});
+    const sender = $('#sender').val();
+    const receiver = $('#receiver').val();
+    $.post("Controller", {action: "SendMessage", message: message, sender: sender,  receiver: receiver});
     $('#msg').val("");
 }
 

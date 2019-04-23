@@ -60,7 +60,6 @@ function startChat(userId) {
                     "\tmargin-bottom:10px;\n" +
                     "\topacity: 0.8;' onclick='sendMessage()'>Send</button>";
                 $li = $("#dialog" + user.toString());
-                userform = "<input type='hidden' value='" + user + "' id='sender'>";
                 break;
             }
         }
@@ -75,9 +74,7 @@ function startChat(userId) {
             "\tborder: none;\n" +
             "\tbackground: #f1f1f1;\n" +
             "\tresize: none;'></textarea> " +
-            "<input id='userIdHidden'type='hidden' value='" + user + "'> " +
-            "<input type='hidden' id='userId' value='"+ userId +"'> " +
-            "<div id='receivingUser'></div> " +
+            "<input type='hidden' value='" + user + "' id='receiver'>" +
             "<div id='sendButton'></div> " +
             "<button type='button' class='btn cancel' onclick='closeChat()' style='background-color: red; \tcolor: white;\n" +
             "\tborder: none;\n" +
@@ -88,12 +85,9 @@ function startChat(userId) {
             "</div>";
         // $('#messagePerson').html(html);
         document.getElementById("chatForm").innerHTML = chatwindow;
-
         document.getElementById("messagePerson").innerHTML = html;
         document.getElementById("sendButton").innerHTML = htmlSendButton;
         // $('#sendButton').html(htmlSendButton);
-        // $('#receivingUser').html(userform);
-        document.getElementById("receivingUser").innerHTML = userform;
         document.getElementById("chatForm").style.display = "block";
     });
 }
