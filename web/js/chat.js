@@ -56,6 +56,7 @@ function closeChat() {
     document.getElementById("chatForm").style.display(none);
 }
 
+let previousMessage;
 function getNewMessage() {
     const userId = $('#userId').val();
     if (userId != null || userId != undefined){
@@ -65,16 +66,14 @@ function getNewMessage() {
             dataType: "json",
             success: function (json){
                 if (json.message != null){
-                    //$('#messagesUl').each(function(i, element){
-                        console.log(element + "  :this");
-                        //if($(element).val() !== "<li style='text-align:right; list-style: none'>\" + json.message + \" </li>"){
-                            //if (json.sender == userId){
-                                $('#messagesUl').append("<li style='text-align:right; list-style: none'>" + json.message + " </li>");
-                            // } else {
-                            //     $('#messagesUl').append("<li style='text-align:left; list-style: none'>" + json.message + " </li>")
-                            // }
-                        //}
-                    //});
+                    if (previousMessage == null || previousMessage != json.message){
+                        previousMessage = json.message;
+                        if (json.sender == userId){
+                            $('#messagesUl').append("<li style='text-align:right; list-style: none'>" + json.message + " </li>");
+                        } else {
+                            $('#messagesUl').append("<li style='text-align:left; list-style: none'>" + json.message + " </li>")
+                        }
+                    }
                 }
                 setTimeout(getNewMessage, 10000);
             },
@@ -99,6 +98,7 @@ function sendMessage() {
     const receiver = $('#receiver').val();
     $.post("Controller", {action: "SendMessage", message: message, sender: sender,  receiver: receiver});
     $('#msg').val("");
+    getNewMessage();
 }
 
 document.getElementById("sendButton").addEventListener("click", function () {

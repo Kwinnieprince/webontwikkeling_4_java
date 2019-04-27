@@ -45,6 +45,45 @@
                 <input type="submit" id="loginbutton" value="Log in">
             </p>
         </form>
+        <br>
+        <form method="post" action="Controller?action=AddUser">
+            <p>
+                <label for="newEmail">Your email</label>
+                <input type="text" id="newEmail" name="email">
+            </p>
+            <p>
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" id="firstName">
+            </p>
+            <p>
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" id="lastName">
+            </p>
+            <p>
+                <label for="gender">Gender</label>
+                <input type="radio" name="gender" id="gender" value="male">Male
+                <input type="radio" name="gender" id="gender" value="female">Female
+            </p>
+            <p>
+                <label for="newPassword">Password</label>
+                <input type="password" name="password" id="newPassword">
+            </p>
+            <p>
+                <label for="passwordRepeat">Repeat Password</label>
+                <input type="password" id="passwordRepeat" name="passwordRepeat">
+            </p>
+            <p>
+                <label for="age">Age</label>
+                <select name="age" id="age">
+                    <c:forEach begin="10" end="100" var="nr">
+                        <option value="${nr}">${nr}</option>
+                    </c:forEach>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Create account">
+            </p>
+        </form>
         <jsp:include page="feedbacks.jsp"/>
     </c:otherwise>
 </c:choose>

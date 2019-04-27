@@ -11,10 +11,7 @@ public class AddFriends extends RequestHandler {
         Controller.setSendJson();
         Person person = (Person) request.getSession().getAttribute("user");
         String friend = request.getParameter("friend");
-        Person newFriend = new Person();
-        newFriend.setStatus("Not available");
-        newFriend.setUserId(friend);
-        getPersonService().addPerson(newFriend);
+        Person newFriend = getPersonService().getPerson(friend);
         person.addFriend(newFriend);
         response.setContentType("application/json");
         return this.toJSON(getPersonService().getPersons());
