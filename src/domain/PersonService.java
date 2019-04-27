@@ -1,11 +1,10 @@
 package domain;
 
-import java.security.PublicKey;
-import java.util.ArrayList;
-import java.util.List;
-
 import db.PersonRepository;
 import db.PersonRepositoryStub;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PersonService {
 	private PersonRepository personRepository = new PersonRepositoryStub();

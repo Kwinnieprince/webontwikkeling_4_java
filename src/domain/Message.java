@@ -2,7 +2,6 @@ package domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Message {
