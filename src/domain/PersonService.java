@@ -59,16 +59,19 @@ public class PersonService {
 		return personRepository;
 	}
 
-	public Message getLastMessageFromPerson(Person person){
+	public Message getLastMessageFromPerson(Person person, Person receiver){
 		if (personRepository.get(person.getUserId()).getLastMessage() != null){
-			return  personRepository.get(person.getUserId()).getLastMessage();
+			System.out.println(receiver.getUserId() + " : receiver");
+			System.out.println(person.getUserId() + " : sender");
+			return  personRepository.get(person.getUserId()).getLastMessageOfPersonReceiver(receiver);
 		}
 		return new Message();
     }
 
 
-	public void sendMessage(Person sender, Message message){
+	public void sendMessage(Person sender, Person receiver, Message message){
 		personRepository.get(sender.getUserId()).sendMessage(message.getSender(), message.getReceiver(), message.getMessage());
+		personRepository.get(receiver.getUserId()).sendMessage(message.getSender(), message.getReceiver(), message.getMessage());
 	}
 
 }

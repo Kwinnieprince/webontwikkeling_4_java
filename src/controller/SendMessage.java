@@ -17,7 +17,7 @@ public class SendMessage extends RequestHandler {
             Person sender = getPersonService().getPersonWithSlashes(senderId);
             Person receiver = getPersonService().getPersonWithSlashes(receiverId);
             message = new Message(sender, receiver, messageString);
-            getPersonService().sendMessage(sender, message);
+            getPersonService().sendMessage(sender, receiver, message);
         }
         Controller.setSendJson();
         return "{\"sender\":\"" + message.getSender().getUserId() + "\"," +

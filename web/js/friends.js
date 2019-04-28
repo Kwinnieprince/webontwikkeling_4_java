@@ -38,20 +38,20 @@ function addFriends() {
 
 function startChat(userId) {
     let user;
+    let receiver;
     $(document).ready(function () {
         let $li;
         let html;
         let htmlSendButton;
-        let userform;
         for (let i = 0 ; i < userIds.length ; i++){
             // noinspection EqualityComparisonWithCoercionJS
             if (userIds[i].userId == userId){
+                receiver = userIds[i].userId.toString();
                 user = userIds[i].userId.toString();
                 user = user.split("@");
                 html = "<div> Message " + user[0] + "</div>";
                 let user1 = user[1].split(".");
                 user = user[0] + "\\@" + user1[0] + "\\." + user1[1];
-                console.log(user);
                 htmlSendButton = "<button type=\"submit\" class=\"btn\" style='\tbackground-color: #4CAF50;\n" +
                     "\tcolor: white;\n" +
                     "\tborder: none;\n" +
@@ -75,6 +75,7 @@ function startChat(userId) {
             "\tbackground: #f1f1f1;\n" +
             "\tresize: none;'></textarea> " +
             "<input type='hidden' value='" + user + "' id='receiver'>" +
+            "<input type='hidden' value='" + receiver + "' id='receiverWithoutSlash'>" +
             "<div id='sendButton'></div> " +
             "<button type='button' class='btn cancel' onclick='closeChat()' style='background-color: red; \tcolor: white;\n" +
             "\tborder: none;\n" +

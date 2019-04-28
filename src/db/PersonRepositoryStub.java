@@ -19,6 +19,7 @@ public class PersonRepositoryStub implements PersonRepository {
 		an.setStatus("gone");
 		add(an);
 		Person jan = new Person("jan@ucll.be", "t", "Jan", "Janssens", Role.LID);
+		jan.setStatus("Ik ben hier");
 		jan.addFriend(administrator);
 		jan.addFriend(an);
 		add(jan);

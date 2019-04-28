@@ -10,13 +10,16 @@ public class GetMessage extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Controller.setSendJson();
-        String userId = request.getParameter("userId");
+        String userId = request.getParameter("sender");
+        String receiverString = request.getParameter("receiver");
+        Person receiver = getPersonService().getPerson(receiverString);
         Person person = getPersonService().getPerson(userId);
-        return toJSON(person);
+        return toJSON(person, receiver);
     }
 
-    public String toJSON (Person person) {
-        Message message = getPersonService().getLastMessageFromPerson(person);
+    public String toJSON (Person person, Person receiver) {
+        Message message = getPersonService().getLastMessageFromPerson(person, receiver);
+        System.out.println(message.getMessage());
         String json = "";
             json = "{\"sender\":\"" + message.getSender().getUserId() + "\"," +
                     "\"receiver\":\"" + message.getReceiver().getUserId() + "\"," +

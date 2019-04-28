@@ -5,6 +5,7 @@ let messageId = 0;
 window.onload = function(){
     getStatus();
     getFriends();
+    getNewMessageFromSender();
     //getNewMessage(); TODO
 };
 
@@ -62,7 +63,7 @@ function getNewMessage() {
     if (userId != null || userId != undefined){
         $.ajax({
             type: "GET",
-            url: "Controller?action=GetMessage&userId=" + userId,
+            url: "Controller?action=GetMessage&sender=" + userId + "&receiver=" + $("#receiverWithoutSlash").val(),
             dataType: "json",
             success: function (json){
                 if (json.message != null){
@@ -85,12 +86,33 @@ function getNewMessage() {
     }
 }
 
-// function unslash(slashedString) {
-//     let slashedstring = slashedString.split("\\");
-//     let person = concat(slashedstring);
-//     console.log(person);
-//     return person;
-// }
+let previousmessagesent;
+function getNewMessageFromSender() {
+    const userId = $('#userId').val();
+    $.ajax({
+        type: "GET",
+        url: "Controller?action=GetMessage&receiver=" + userId + "&sender=" + $("#receiverWithoutSlash").val(),
+        dataType: "json",
+        success: function (json){
+            if (json.message != null){
+                if (previousmessagesent == null || previousmessagesent != json.message){
+                    previousmessagesent = json.message;
+                    if (json.sender == userId){
+                        $('#messagesUl').append("<li style='text-align:left; list-style: none'>" + json.message + " </li>");
+                    } else {
+                        $('#messagesUl').append("<li style='text-align:left; list-style: none'>" + json.message + " </li>")
+                    }
+                }
+            }
+            setTimeout(getNewMessage, 10000);
+        },
+        error: function () {
+            console.log("error getting the message");
+            setTimeout(getNewMessage, 10000);
+        }
+    })
+
+}
 
 function sendMessage() {
     const message = $('#msg').val();

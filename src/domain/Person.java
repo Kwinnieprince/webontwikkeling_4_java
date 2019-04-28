@@ -199,6 +199,21 @@ public class Person {
 		return null;
 	}
 
+	public Message getLastMessageOfPersonReceiver(Person receiver){
+		System.out.println("Got here: " + messages.size());
+		if (messages.size() == 1){
+			return getLastMessage();
+		}
+		for(int i = messages.size() - 1 ; i > 0; i--){
+			System.out.println("message: " + messages.get(i).getMessage());
+			if (messages.get(i).getReceiver().equals(receiver)){
+				System.out.println("right message: " + messages.get(i).getMessage());
+				return messages.get(i);
+			}
+		}
+		return null;
+	}
+
 	public void sendMessage(Person sender, Person receiver, String message){
 		Message messageSent = new Message(sender, receiver, message);
 		messages.add(messageSent);
