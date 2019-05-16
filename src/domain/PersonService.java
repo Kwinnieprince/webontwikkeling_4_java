@@ -71,7 +71,7 @@ public class PersonService {
 
 	public void sendMessage(Person sender, Person receiver, Message message){
 		personRepository.get(sender.getUserId()).sendMessage(message.getSender(), message.getReceiver(), message.getMessage());
-		personRepository.get(receiver.getUserId()).sendMessage(message.getSender(), message.getReceiver(), message.getMessage());
+//		personRepository.get(receiver.getUserId()).sendMessage(message.getSender(), message.getReceiver(), message.getMessage());
 	}
 
 }

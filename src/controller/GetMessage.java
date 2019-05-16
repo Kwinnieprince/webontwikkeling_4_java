@@ -19,7 +19,6 @@ public class GetMessage extends RequestHandler {
 
     public String toJSON (Person person, Person receiver) {
         Message message = getPersonService().getLastMessageFromPerson(person, receiver);
-        System.out.println(message.getMessage());
         String json = "";
             json = "{\"sender\":\"" + message.getSender().getUserId() + "\"," +
                     "\"receiver\":\"" + message.getReceiver().getUserId() + "\"," +

@@ -10,6 +10,8 @@ public class GetUsersAngular extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         Controller.setSendJson();
+        response.setContentType("application/json");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return toJSON(getPersonService().getPersons());
     }
 

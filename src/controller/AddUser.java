@@ -29,10 +29,10 @@ public class AddUser extends RequestHandler {
                 person.setStatus("Offline");
                 getPersonService().addPerson(person);
             }else {
-                throw new IllegalArgumentException("Passwords do not match");
+                return "index.jsp";
             }
         }else {
-            throw new IllegalArgumentException("Empty field");
+            return "index.jsp";
         }
         return destination;
     }

@@ -75,7 +75,7 @@
             <p>
                 <label for="age">Age</label>
                 <select name="age" id="age">
-                    <c:forEach begin="10" end="100" var="nr">
+                    <c:forEach begin="0" end="200" var="nr">
                         <option value="${nr}">${nr}</option>
                     </c:forEach>
                 </select>

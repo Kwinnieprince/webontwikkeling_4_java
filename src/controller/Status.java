@@ -11,9 +11,14 @@ public class Status extends RequestHandler {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("user");
-        getPersonService().changeStatus(request.getParameter("status"), person);
-        Controller.setSendJson();
-        return toJSON(person.getStatus());
+        if (person != null){
+            getPersonService().changeStatus(request.getParameter("status"), person);
+            Controller.setSendJson();
+            return toJSON(person.getStatus());
+        }else {
+            getPersonService().changeStatus(request.getParameter("status"), getPersonService().getPerson(request.getParameter("userId")));
+            return toJSON( getPersonService().getPerson(request.getParameter("userId")).getStatus());
+        }
     }
 
     private String toJSON (String status) {

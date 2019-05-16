@@ -1,12 +1,10 @@
 let xhr = new XMLHttpRequest();
-let xHRStatus = new XMLHttpRequest();
-let messageId = 0;
 
 window.onload = function(){
     getStatus();
     getFriends();
     getNewMessageFromSender();
-    //getNewMessage(); TODO
+    getNewMessage();
 };
 
 function changeStatus() {
@@ -76,6 +74,7 @@ function getNewMessage() {
                         }
                     }
                 }
+                getNewMessageFromSender();
                 setTimeout(getNewMessage, 10000);
             },
             error: function () {
@@ -86,7 +85,7 @@ function getNewMessage() {
     }
 }
 
-let previousmessagesent;
+let previousMessageSent;
 function getNewMessageFromSender() {
     const userId = $('#userId').val();
     $.ajax({
@@ -95,8 +94,8 @@ function getNewMessageFromSender() {
         dataType: "json",
         success: function (json){
             if (json.message != null){
-                if (previousmessagesent == null || previousmessagesent != json.message){
-                    previousmessagesent = json.message;
+                if (previousMessageSent == null || previousMessageSent != json.message){
+                    previousMessageSent = json.message;
                     if (json.sender == userId){
                         $('#messagesUl').append("<li style='text-align:left; list-style: none'>" + json.message + " </li>");
                     } else {
@@ -121,6 +120,7 @@ function sendMessage() {
     $.post("Controller", {action: "SendMessage", message: message, sender: sender,  receiver: receiver});
     $('#msg').val("");
     getNewMessage();
+    getNewMessageFromSender();
 }
 
 document.getElementById("sendButton").addEventListener("click", function () {
