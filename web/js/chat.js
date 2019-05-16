@@ -57,6 +57,7 @@ function closeChat() {
 
 let previousMessage;
 function getNewMessage() {
+    getNewMessageFromSender();
     const userId = $('#userId').val();
     if (userId != null || userId != undefined){
         $.ajax({
