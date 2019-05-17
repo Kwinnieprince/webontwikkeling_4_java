@@ -85,10 +85,15 @@ function startChat(userId) {
             "\topacity: 0.8;'>Close</button> " +
             "</div>";
         // $('#messagePerson').html(html);
-        document.getElementById("chatForm").innerHTML = chatwindow;
-        document.getElementById("messagePerson").innerHTML = html;
-        document.getElementById("sendButton").innerHTML = htmlSendButton;
+        // document.getElementById("chatForm").innerHTML = chatwindow;
+        $('#chatForm').empty();
+        $('#chatForm').append(chatwindow);
+        $('#messagePerson').append(html);
+        $('#sendButton').append(htmlSendButton);
+        $('#chatForm').css('display', 'flex');
+        // document.getElementById("messagePerson").innerHTML = html;
+        // document.getElementById("sendButton").innerHTML = htmlSendButton;
         // $('#sendButton').html(htmlSendButton);
-        document.getElementById("chatForm").style.display = "block";
+        // document.getElementById("chatForm").style.display = "block";
     });
 }
