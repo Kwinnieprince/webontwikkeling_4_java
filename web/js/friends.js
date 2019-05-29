@@ -97,3 +97,41 @@ function startChat(userId) {
         // document.getElementById("chatForm").style.display = "block";
     });
 }
+
+function getTodo() {
+    setTimeout(null,1000);
+    xHRObjectFriends.open("GET", "Controller?action=GetTodo");
+    xHRObjectFriends.send();
+    xHRObjectFriends.onreadystatechange = showDataOfTodo;
+}
+
+function addTodo() {
+    let todoDay = document.getElementById("todoDay").value;
+    let todoMessage = document.getElementById("todoMessage").value;
+    let todoPerson = document.getElementById("todoPerson").value;
+    let information = "todoDay=" + encodeURI(todoDay) + "&todoMessage=" + encodeURI(todoMessage) +  "&todoPerson=" + encodeURI(todoPerson);
+    document.getElementById("todoDay").value = "";
+    document.getElementById("todoMessage").value = "";
+    document.getElementById("todoPerson").value = "";
+    xHRObjectAdd.open("POST", "Controller?action=AddTodo");
+    xHRObjectAdd.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xHRObjectAdd.send(information);
+    getTodo();
+    xHRObjectAdd.onreadystatechange = showDataOfTodo;
+}
+
+function showDataOfTodo() {
+    if (xHRObjectFriends.readyState === 4) {
+        if (xHRObjectFriends.status === 200) {
+            let serverResponse = JSON.parse(xHRObjectFriends.responseText);
+            userIds = serverResponse;
+            let html = "";
+            for (let i = 0; i < serverResponse.length; i++) {
+                html = html + "<li>" + serverResponse[i].dayTodo + " - " + serverResponse[i].messageTodo + " - " + serverResponse[i].personTodo + "</li>"
+            }
+            document.getElementById("todoList").innerHTML = html;
+            setTimeout(getTodo, 10000);
+        }
+    }
+    setTimeout(getTodo, 10000);
+}

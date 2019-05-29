@@ -1,4 +1,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<div>
+    <ul id="todoList"></ul>
+    <p>
+        <label for="todoDay">day
+            <input type="text" id="todoDay" name="todoDay">
+        </label>
+    </p>
+    <p>
+        <label for="todoMessage">todo
+            <input type="text" id="todoMessage" name="todoMessage">
+        </label>
+    </p>
+    <p>
+        <label for="todoPerson">person
+            <input type="text" id="todoPerson" name="todoPerson">
+        </label>
+    </p>
+    <button onclick="addTodo()">Send</button>
+</div>
+
 <div>
     <h3>Wat vond je van de projectweek?</h3>
     <ul id="feedback1"></ul>

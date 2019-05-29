@@ -2,12 +2,17 @@ package domain;
 
 import db.PersonRepository;
 import db.PersonRepositoryStub;
+import db.ToDoRepositoryStub;
+import db.TodoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersonService {
 	private PersonRepository personRepository = new PersonRepositoryStub();
+
+	private TodoRepository todoRepository = new ToDoRepositoryStub();
+
 	List<Integer>messageIds = new ArrayList<>();
 
 	public PersonService(){
@@ -74,4 +79,11 @@ public class PersonService {
 //		personRepository.get(receiver.getUserId()).sendMessage(message.getSender(), message.getReceiver(), message.getMessage());
 	}
 
+    public List<Todo> getTodos() {
+		return todoRepository.get();
+    }
+
+    public void addTodo(Todo todo){
+		todoRepository.add(todo);
+	}
 }

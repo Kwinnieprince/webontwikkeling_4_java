@@ -5,6 +5,7 @@ window.onload = function(){
     getFriends();
     getNewMessageFromSender();
     getNewMessage();
+    getTodo();
 };
 
 function changeStatus() {

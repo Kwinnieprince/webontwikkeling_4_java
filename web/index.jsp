@@ -32,6 +32,7 @@
         <jsp:include page="chats.jsp"/>
     </c:when>
     <c:otherwise>
+
         <form method="post" action="Controller?action=LogIn">
             <p>
                 <label for="email">Your email </label>
